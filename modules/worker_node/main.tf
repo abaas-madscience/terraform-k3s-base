@@ -47,6 +47,7 @@ users:
 package_update: true
 package_upgrade: true
 
+
 runcmd:
   - mkdir -p /etc/systemd/resolved.conf.d
   - bash -c "echo '[Resolve]' > /etc/systemd/resolved.conf.d/lab.conf"
@@ -58,10 +59,7 @@ runcmd:
   - bash -c "echo 'net.ipv6.conf.default.disable_ipv6 = 1' >> /etc/sysctl.d/99-disable-ipv6.conf"
   - bash -c "echo 'net.ipv6.conf.lo.disable_ipv6 = 1' >> /etc/sysctl.d/99-disable-ipv6.conf"
   - sysctl --system
-  - apt-get -y autoremove
-  - apt-get -y clean
-  - apt install qemu-guest-agent -y
-  - systemctl enable --now qemu-guest-agent
+  - sudo pacman -Syu --noconfirm
   - reboot
 
 EOF
